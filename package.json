@@ -1,0 +1,17 @@
+{
+  "name": "chalk_sample",
+  "version": "1.0.0",
+  "description": "",
+  "main": "chalk.js",
+  "scripts": {
+    "build": "node_modules/.bin/babel ./src --out-dir ./dist"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "chalk": "^2.4.1",
+    "babel-cli": "^6.26.0",
+    "babel-preset-es2015": "^6.24.1",
+    "inquirer": "^6.2.0"
+  }
+}
