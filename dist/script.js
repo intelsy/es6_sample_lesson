@@ -33,7 +33,7 @@ _inquirer2.default.prompt(questions).then(function (answers) {
   console.log('YOUR ORDER');
   console.log('------------------');
   // use npm packages
-  console.log(_chalk2.default.blue('place: ' + placeText));
-  console.log(_chalk2.default.green('order: ' + menu));
-  console.log(_chalk2.default.red('number: ' + number));
+  console.log('place: ' + _chalk2.default.green(placeText));
+  console.log('order: ' + _chalk2.default.green(menu));
+  console.log('number: ' + _chalk2.default.green(number));
 });

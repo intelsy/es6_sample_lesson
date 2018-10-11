@@ -27,7 +27,7 @@ inquirer
     console.log('YOUR ORDER');
     console.log('------------------');
     // use npm packages
-    console.log(chalk.blue(`place: ${placeText}`));
-    console.log(chalk.green(`order: ${menu}`));
-    console.log(chalk.red(`number: ${number}`));
+    console.log('place: ' + chalk.green(placeText));
+    console.log('order: ' + chalk.green(menu));
+    console.log('number: ' + chalk.green(number));
   });
