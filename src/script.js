@@ -1,33 +1,37 @@
-// import npm packages
 import chalk from 'chalk'
 import inquirer from 'inquirer';
-// relative path
-import menuList from './menuList'
+import { foods, drinks } from './menuList'
+
+const foodChoices = foods.map((food) => {
+  return `${food.name} ${food.price}円 (${food.calorie}kcal)`
+});
+
+const drinkChoices = drinks.map((drink) => {
+  return `${drink.name} ${drink.price}円 (${drink.calorie}ml)`
+});
 
 const questions = [
   {type: 'confirm', name: 'place', message: 'For Here?', default: true},
-  {type: 'list', name: 'menu', message: 'What do you order?', choices: menuList},
-  {type: 'input', name: 'number', message: 'How many?'},
+  {type: 'list', name: 'food', message: 'Select Food', choices: foodChoices},
+  {type: 'list', name: 'drink', message: 'Select Drink', choices: drinkChoices},
 ];
 
-// use npm packages
 inquirer
   .prompt(questions)
   .then((answers) => {
-    // object destructuring
     const {
       place,
-      menu,
-      number,
+      food,
+      drink,
     } = answers;
 
-    // ternary operator
-    const placeText = place ? 'For Here' : 'To Go';
+    const placeText = place ? '店内' : '持ち帰り';
 
     console.log('YOUR ORDER');
     console.log('------------------');
-    // use npm packages
     console.log('place: ' + chalk.green(placeText));
-    console.log('order: ' + chalk.green(menu));
-    console.log('number: ' + chalk.green(number));
+    console.log('food: ' + chalk.green(food));
+    console.log('drink: ' + chalk.green(drink));
+    console.log('------------------');
+    console.log('またのご来店をお待ちしております')
   });
