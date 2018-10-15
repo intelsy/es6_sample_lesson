@@ -7,15 +7,16 @@ const foodChoices = foods.map((food) => {
 });
 
 const drinkChoices = drinks.map((drink) => {
-  return `${drink.name} ${drink.price}円 (${drink.calorie}ml)`
+  return `${drink.name} ${drink.price}円 (${drink.amount}ml)`
 });
 
 const questions = [
-  {type: 'confirm', name: 'place', message: 'For Here?', default: true},
-  {type: 'list', name: 'food', message: 'Select Food', choices: foodChoices},
-  {type: 'list', name: 'drink', message: 'Select Drink', choices: drinkChoices},
+  {type: 'confirm', name: 'place', message: '店内でお召し上がりですか？(Yかnを入力)', default: true},
+  {type: 'list', name: 'food', message: 'お料理を選んでください', choices: foodChoices},
+  {type: 'list', name: 'drink', message: 'お飲み物を選んでください', choices: drinkChoices},
 ];
 
+console.log(chalk.bgCyan.bold('Progate Cafeへようこそ！'));
 inquirer
   .prompt(questions)
   .then((answers) => {
@@ -27,11 +28,11 @@ inquirer
 
     const placeText = place ? '店内' : '持ち帰り';
 
-    console.log('YOUR ORDER');
     console.log('------------------');
-    console.log('place: ' + chalk.green(placeText));
-    console.log('food: ' + chalk.green(food));
-    console.log('drink: ' + chalk.green(drink));
+    console.log(chalk.bold('【ご注文内容】'));
+    console.log('店内/持ち帰り: ' + chalk.yellow.bold(placeText));
+    console.log('フード: ' + chalk.yellow.bold(food));
+    console.log('ドリンク: ' + chalk.yellow.bold(drink));
     console.log('------------------');
-    console.log('またのご来店をお待ちしております')
+    console.log(chalk.bold('またのご来店をお待ちしております！'));
   });
