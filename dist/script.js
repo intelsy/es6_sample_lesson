@@ -12,30 +12,46 @@ var _menuList = require('./menuList');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var foodChoices = _menuList.foods.map(function (food) {
-  return food.name + ' ' + food.price + '\u5186 (' + food.calorie + 'kcal)';
-});
-
-var drinkChoices = _menuList.drinks.map(function (drink) {
-  return drink.name + ' ' + drink.price + '\u5186 (' + drink.amount + 'ml)';
-});
-
-var questions = [{ type: 'confirm', name: 'place', message: '店内でお召し上がりですか？(Yかnを入力)', default: true }, { type: 'list', name: 'food', message: 'お料理を選んでください', choices: foodChoices }, { type: 'list', name: 'drink', message: 'お飲み物を選んでください', choices: drinkChoices }];
+var questions = [
+// {type: '選択形式', name: '答えを格納するキー', message: '店内でお召し上がりですか？(Yかnを入力)', choices: インポートする配列}
+{ type: 'confirm', name: 'place', message: '店内でお召し上がりですか？(Yかnを入力)', default: true }, { type: 'list', name: 'food', message: 'お料理を選んでください', choices: _menuList.foods }, { type: 'list', name: 'drink', message: 'お飲み物を選んでください', choices: _menuList.drinks }];
 
 console.log(_chalk2.default.bgCyan.bold('Progate Cafeへようこそ！'));
 _inquirer2.default.prompt(questions).then(function (answers) {
-  var place = answers.place,
-      food = answers.food,
-      drink = answers.drink;
 
+    // const place = answers.place
+    // const food  = answers.food
+    // const drink = answers.drink
 
-  var placeText = place ? '店内' : '持ち帰り';
+    // const {place} = answers
+    // const {food}  = answers
+    // const {drink} = answers
 
-  console.log('------------------');
-  console.log(_chalk2.default.bold('【ご注文内容】'));
-  console.log('店内/持ち帰り: ' + _chalk2.default.yellow.bold(placeText));
-  console.log('フード: ' + _chalk2.default.yellow.bold(food));
-  console.log('ドリンク: ' + _chalk2.default.yellow.bold(drink));
-  console.log('------------------');
-  console.log(_chalk2.default.bold('またのご来店をお待ちしております！'));
+    var place = answers.place,
+        food = answers.food,
+        drink = answers.drink;
+
+    // if (place){
+    //   const placeText = '店内'
+    // }else{
+    //   const placeText = '持ち帰り'
+    // }
+
+    var placeText = place ? '店内' : '持ち帰り';
+
+    console.log('------------------');
+    console.log('【ご注文内容】');
+    console.log('店内/持ち帰り: ' + placeText);
+    console.log('フード: ' + food);
+    console.log('ドリンク: ' + drink);
+    console.log('------------------');
+    console.log(_chalk2.default.red.bold('またのご来店をお待ちしております！'));
+
+    // console.log('------------------');
+    // console.log(chalk.bold('【ご注文内容】'));
+    // console.log('店内/持ち帰り: ' + chalk.yellow.bold(placeText));
+    // console.log('フード: ' + chalk.yellow.bold(food));
+    // console.log('ドリンク: ' + chalk.yellow.bold(drink));
+    // console.log('------------------');
+    // console.log(chalk.bold('またのご来店をお待ちしております！'));
 });
