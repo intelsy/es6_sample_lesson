@@ -17,11 +17,12 @@ var foodChoices = _menuList.foods.map(function (food) {
 });
 
 var drinkChoices = _menuList.drinks.map(function (drink) {
-  return drink.name + ' ' + drink.price + '\u5186 (' + drink.calorie + 'ml)';
+  return drink.name + ' ' + drink.price + '\u5186 (' + drink.amount + 'ml)';
 });
 
-var questions = [{ type: 'confirm', name: 'place', message: 'For Here?', default: true }, { type: 'list', name: 'food', message: 'Select Food', choices: foodChoices }, { type: 'list', name: 'drink', message: 'Select Drink', choices: drinkChoices }];
+var questions = [{ type: 'confirm', name: 'place', message: '店内でお召し上がりですか？(Yかnを入力)', default: true }, { type: 'list', name: 'food', message: 'お料理を選んでください', choices: foodChoices }, { type: 'list', name: 'drink', message: 'お飲み物を選んでください', choices: drinkChoices }];
 
+console.log(_chalk2.default.bgCyan.bold('Progate Cafeへようこそ！'));
 _inquirer2.default.prompt(questions).then(function (answers) {
   var place = answers.place,
       food = answers.food,
@@ -30,11 +31,11 @@ _inquirer2.default.prompt(questions).then(function (answers) {
 
   var placeText = place ? '店内' : '持ち帰り';
 
-  console.log('YOUR ORDER');
   console.log('------------------');
-  console.log('place: ' + _chalk2.default.green(placeText));
-  console.log('food: ' + _chalk2.default.green(food));
-  console.log('drink: ' + _chalk2.default.green(drink));
+  console.log(_chalk2.default.bold('【ご注文内容】'));
+  console.log('店内/持ち帰り: ' + _chalk2.default.yellow.bold(placeText));
+  console.log('フード: ' + _chalk2.default.yellow.bold(food));
+  console.log('ドリンク: ' + _chalk2.default.yellow.bold(drink));
   console.log('------------------');
-  console.log('またのご来店をお待ちしております');
+  console.log(_chalk2.default.bold('またのご来店をお待ちしております！'));
 });
